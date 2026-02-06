@@ -7,14 +7,25 @@ import { NextResponse } from 'next/server'
 import Razorpay from 'razorpay'
 import { supabase } from '@/services/supabase'
 
-// Initialize Razorpay instance
-const razorpay = new Razorpay({
-  key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET
-})
+// Initialize Razorpay instance (only if keys are provided)
+let razorpay = null
+if (process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET) {
+  razorpay = new Razorpay({
+    key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET
+  })
+}
 
 export async function POST(request) {
   try {
+    // Check if Razorpay is configured
+    if (!razorpay) {
+      return NextResponse.json(
+        { error: 'Payment gateway not configured. Please set RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET.' },
+        { status: 500 }
+      )
+    }
+
     const { amount, studentId } = await request.json()
 
     // Generate unique order ID

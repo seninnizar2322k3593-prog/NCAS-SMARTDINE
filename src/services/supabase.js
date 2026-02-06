@@ -6,8 +6,10 @@
 import { createClient } from '@supabase/supabase-js'
 
 // Get Supabase credentials from environment variables
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+// Use placeholder values if not set (for build time)
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co'
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key'
 
 // Create and export Supabase client
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
