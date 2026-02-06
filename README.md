@@ -7,7 +7,7 @@ A modern, full-stack web application built with Next.js for college canteen food
 This is a complete college final-year project that allows students to:
 - Register and login to the system
 - Browse today's and tomorrow's menu
-- Place orders with online payment via Razorpay
+- Place orders with UPI payment (PhonePe, Google Pay, Paytm)
 - Receive QR codes for their orders
 - View order history and status
 
@@ -25,7 +25,7 @@ The QR scanner validates orders and triggers ticket printing for food collection
 - **Language**: JavaScript
 - **Database**: Supabase (PostgreSQL)
 - **Authentication**: Supabase Auth + Custom Student Auth
-- **Payments**: Razorpay
+- **Payments**: UPI Deep Links (PhonePe, Google Pay, Paytm)
 - **QR Generation**: qrcode library
 - **QR Scanning**: html5-qrcode library
 - **Styling**: Pure CSS with CSS Variables
@@ -65,7 +65,7 @@ ncas-smart-dine/
 │   │
 │   │   └── api/
 │   │       ├── payment/
-│   │       │   ├── create-order/route.js    # Create Razorpay order
+│   │       │   ├── create-order/route.js    # Create UPI Payment order
 │   │       │   └── verify/route.js          # Verify payment
 │   │       └── scanner/
 │   │           └── validate/route.js        # Validate QR & print
@@ -92,7 +92,7 @@ ncas-smart-dine/
 
 - Node.js 18+ installed
 - Supabase account (free tier works)
-- Razorpay account (test mode available)
+- UPI Payment account (test mode available)
 
 ### Installation
 
@@ -118,8 +118,8 @@ ncas-smart-dine/
    ```env
    NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-   NEXT_PUBLIC_RAZORPAY_KEY_ID=your_razorpay_key_id
-   RAZORPAY_KEY_SECRET=your_razorpay_secret_key
+   NEXT_PUBLIC_UPI_ID=merchant@upi
+   NEXT_PUBLIC_UPI_NAME=NCAS Smart Dine
    ```
 
 4. **Set up Supabase Database**
@@ -151,12 +151,29 @@ To create an admin user:
    INSERT INTO admins (email, role) VALUES ('your-admin@email.com', 'admin');
    ```
 
-## 💳 Razorpay Setup
+## 💳 UPI Payment Configuration
 
-1. Sign up at [Razorpay](https://razorpay.com/)
-2. Get your API keys from Dashboard → Settings → API Keys
-3. Use TEST mode keys for development
-4. Add keys to `.env.local`
+The application uses UPI deep links for direct payment through UPI apps:
+
+1. Set your UPI ID in `.env.local`:
+   ```
+   NEXT_PUBLIC_UPI_ID=yourmerchant@upi
+   NEXT_PUBLIC_UPI_NAME=NCAS Smart Dine
+   ```
+
+2. Supported UPI apps:
+   - PhonePe
+   - Google Pay (GPay)
+   - Paytm
+   - Any other UPI app
+
+3. **How it works:**
+   - Student selects items and proceeds to checkout
+   - Payment page displays UPI app options
+   - Clicking an app opens the UPI payment interface
+   - Student completes payment in their UPI app
+   - Order is created immediately (no verification)
+   - QR code is generated for order pickup
 
 ## 📱 Features
 
@@ -165,7 +182,7 @@ To create an admin user:
 - ✅ Login authentication
 - ✅ Browse menu (today & tomorrow)
 - ✅ Add items to cart
-- ✅ Online payment via Razorpay
+- ✅ UPI payment via PhonePe, Google Pay, Paytm
 - ✅ QR code generation for orders
 - ✅ View order history
 - ✅ Track order status
@@ -201,11 +218,10 @@ To create an admin user:
 
 ## 🔒 Security Features
 
-- Server-side payment verification
-- Razorpay signature validation
+- Direct UPI payment (no payment gateway)
 - Protected API routes
 - Client-side auth checks
-- Environment variables for secrets
+- Environment variables for configuration
 - SQL injection prevention via Supabase
 
 ## 📊 Available Scripts
@@ -222,13 +238,11 @@ npm run lint     # Run ESLint
 1. **Register as a student** using the registration page
 2. **Login** with your Student ID and DOB
 3. **Browse menu** and add items to cart
-4. **Test payment** using Razorpay test cards:
-   - Card: 4111 1111 1111 1111
-   - CVV: Any 3 digits
-   - Expiry: Any future date
-5. **View your order** with QR code
-6. **Scan QR code** using the scanner page
-7. **Print ticket** (triggers browser print dialog)
+4. **Proceed to checkout** - you'll be redirected to the UPI payment page
+5. **Select a UPI app** (PhonePe, Google Pay, or Paytm)
+6. **Complete payment** in your UPI app
+7. **View your order** with QR code in the orders page
+8. **Scan QR code** using the scanner page to print ticket
 
 ## 🎓 Viva Preparation
 
@@ -236,21 +250,22 @@ npm run lint     # Run ESLint
 
 1. **Architecture**: Next.js App Router with server and client components
 2. **Database**: Supabase PostgreSQL with relational schema
-3. **Payment Flow**: Razorpay order creation → payment → signature verification
-4. **QR System**: Generate on payment success → scan → validate → print
-5. **Security**: Server-side verification, environment variables, auth checks
+3. **Payment Flow**: UPI deep links → external payment → order creation
+4. **QR System**: Generate on order creation → scan → validate → print
+5. **Security**: Client-side checks, environment variables, auth validation
 6. **State Management**: React hooks (useState, useEffect)
 7. **Styling**: CSS variables for consistent theming
 
 ### Demo Flow:
 1. Show student registration and login
 2. Demonstrate menu browsing and cart
-3. Complete a test payment
-4. Show QR code generation
-5. Scan and print ticket
-6. Switch to admin panel
-7. Show menu management
-8. Generate reports
+3. Navigate to UPI payment page
+4. Show UPI app selection (PhonePe/Google Pay/Paytm)
+5. Order creation and QR code generation
+6. Scan and print ticket
+7. Switch to admin panel
+8. Show menu management
+9. Generate reports
 
 ## 🤝 Contributing
 
