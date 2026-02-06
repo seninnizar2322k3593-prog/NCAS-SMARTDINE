@@ -107,95 +107,18 @@ export default function MenuPage() {
   }
 
   // Handle checkout
-  const handleCheckout = async () => {
+  const handleCheckout = () => {
     if (cart.length === 0) {
       alert('Your cart is empty!')
       return
     }
 
-    // Redirect to payment processing
     // Store cart in sessionStorage for payment page
     sessionStorage.setItem('cart', JSON.stringify(cart))
     sessionStorage.setItem('total', calculateTotal().toString())
     
-    // Process payment through Razorpay
-    await processPayment()
-  }
-
-  // Process payment with Razorpay
-  const processPayment = async () => {
-    try {
-      const total = calculateTotal()
-      
-      // Create order on backend
-      const response = await fetch('/api/payment/create-order', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          amount: total,
-          studentId: student.student_id
-        })
-      })
-
-      const { orderId, razorpayOrderId } = await response.json()
-
-      // Load Razorpay script
-      const script = document.createElement('script')
-      script.src = 'https://checkout.razorpay.com/v1/checkout.js'
-      script.async = true
-      document.body.appendChild(script)
-
-      script.onload = () => {
-        const options = {
-          key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-          amount: total * 100, // Amount in paise
-          currency: 'INR',
-          name: 'NCAS SMART DINE',
-          description: 'Food Order Payment',
-          order_id: razorpayOrderId,
-          handler: async function (response) {
-            // Verify payment
-            const verifyResponse = await fetch('/api/payment/verify', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                orderId: orderId,
-                razorpayOrderId: response.razorpay_order_id,
-                razorpayPaymentId: response.razorpay_payment_id,
-                razorpaySignature: response.razorpay_signature,
-                studentId: student.student_id,
-                items: cart,
-                total: total
-              })
-            })
-
-            const result = await verifyResponse.json()
-            
-            if (result.success) {
-              alert('Payment successful! Order placed.')
-              setCart([])
-              router.push('/student/orders')
-            } else {
-              alert('Payment verification failed!')
-            }
-          },
-          prefill: {
-            name: student.name,
-            email: student.email || '',
-            contact: student.phone || ''
-          },
-          theme: {
-            color: '#2563eb'
-          }
-        }
-
-        const paymentObject = new window.Razorpay(options)
-        paymentObject.open()
-      }
-    } catch (err) {
-      console.error('Payment error:', err)
-      alert('Payment failed. Please try again.')
-    }
+    // Redirect to UPI payment page
+    router.push('/student/payment')
   }
 
   if (!student) {
