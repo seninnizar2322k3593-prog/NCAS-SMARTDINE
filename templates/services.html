@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}SEO & Marketing Services - Company Market Study System{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="text-center mb-5">SEO & Marketing Services</h1>
+            
+            <div class="card shadow mb-4">
+                <div class="card-body p-5">
+                    <h3 class="card-title mb-4">Boost Your Company's Visibility</h3>
+                    <p class="lead">Our professional SEO and marketing services help your company stand out in search results and reach more customers.</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-4">
+                            <div class="service-card p-4 border rounded">
+                                <i class="fas fa-search fa-3x text-primary mb-3"></i>
+                                <h4>SEO Optimization</h4>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>Keyword optimization</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>On-page SEO</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Technical SEO audit</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Performance tracking</li>
+                                </ul>
+                                <p class="h4 text-primary mt-3">$299/month</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="service-card p-4 border rounded">
+                                <i class="fas fa-bullhorn fa-3x text-primary mb-3"></i>
+                                <h4>Marketing Ads</h4>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>Featured listings</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Banner advertisements</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Social media promotion</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Email campaigns</li>
+                                </ul>
+                                <p class="h4 text-primary mt-3">$199/month</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Request a Service</h4>
+                </div>
+                <div class="card-body p-4">
+                    <p class="mb-4">Fill out the form below and our team will contact you with more information and pricing details.</p>
+                    <form method="POST" action="{{ url_for('request_service') }}">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="service_type" class="form-label">Service Type</label>
+                                <select class="form-select" id="service_type" name="service_type" required>
+                                    <option value="">Select service...</option>
+                                    <option value="SEO">SEO Optimization</option>
+                                    <option value="Marketing">Marketing Ads</option>
+                                    <option value="Both">Both Services</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="company_name" class="form-label">Company Name</label>
+                                <input type="text" class="form-control" id="company_name" name="company_name" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="contact_name" class="form-label">Contact Name</label>
+                                <input type="text" class="form-control" id="contact_name" name="contact_name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="contact_email" class="form-label">Contact Email</label>
+                                <input type="email" class="form-control" id="contact_email" name="contact_email" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Additional Information</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" 
+                                      placeholder="Tell us about your goals and requirements..."></textarea>
+                        </div>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            All service requests are sent directly to our admin team for review. You will receive a response within 24-48 hours.
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-paper-plane me-2"></i>Submit Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card shadow mt-4 bg-light">
+                <div class="card-body p-4">
+                    <h5 class="card-title">Why Choose Our Services?</h5>
+                    <ul>
+                        <li>Proven track record of improving company visibility</li>
+                        <li>Experienced SEO and marketing professionals</li>
+                        <li>Custom strategies tailored to your business</li>
+                        <li>Transparent pricing with no hidden fees</li>
+                        <li>Monthly performance reports</li>
+                        <li>Dedicated support team</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
