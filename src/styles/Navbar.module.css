@@ -1,0 +1,162 @@
+/* The main glass bar */
+.navbar {
+  /* Solid white background */
+  background: #ffffff;
+  /* The core frosted glass effect */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  /* Subtle white border for the "glass edge" look */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.navContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navBrand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.3s ease;
+}
+
+.navBrand:hover {
+  transform: scale(1.05);
+}
+
+.navLogo {
+  height: 110px;
+  width: auto;
+  object-fit: contain;
+}
+
+.navLinks {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+  justify-content: center;
+  /* mimicking the floating dock style from the bottom of the image */
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.navLink {
+  padding: 0.75rem 1.5rem;
+  color: #718096;
+  text-decoration: none;
+  border-radius: 1.5rem;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  position: relative;
+}
+
+.navLink:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #0099CC;
+  transform: translateY(-2px);
+}
+
+/* The active state with NCAS brand gradient */
+.navLinkActive {
+  background: linear-gradient(135deg, #0099CC 0%, #00A651 100%);
+  color: white;
+  box-shadow: 0 8px 16px rgba(0, 153, 204, 0.35);
+}
+
+.navLinkActive:hover {
+  background: linear-gradient(135deg, #0099CC 0%, #00A651 100%);
+  color: white;
+  box-shadow: 0 10px 20px rgba(0, 166, 81, 0.4);
+  transform: translateY(-2px);
+}
+
+.navUser {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.userName {
+  color: #4a5568;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Logout button styled as a subtle glass button */
+.logoutBtn {
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: #e53e3e;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  backdrop-filter: blur(5px);
+}
+
+.logoutBtn:hover {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 5px 15px rgba(229, 62, 62, 0.2);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .navContainer {
+    flex-wrap: wrap;
+    padding: 1rem;
+    justify-content: center;
+  }
+
+  .navBrand {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .navLinks {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    padding: 0.5rem;
+    justify-content: flex-start;
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .navLinks::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navLink {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .navUser {
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+}

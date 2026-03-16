@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--bg-secondary);
+}
+
+.loader {
+  text-align: center;
+}
+
+.loader p {
+  margin-top: 1rem;
+  color: var(--text-secondary);
+}

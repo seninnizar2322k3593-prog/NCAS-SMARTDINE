@@ -1,0 +1,356 @@
+/* Main Container with Atmospheric Background */
+.ordersPage {
+  padding: 2rem 0;
+  min-height: calc(100vh - 80px);
+  /* Soft atmospheric background */
+  background: radial-gradient(circle at top right, #f3f4f6 0%, #eef2ff 100%);
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Floating Blob Effects */
+.ordersPage::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  filter: blur(90px);
+  border-radius: 50%;
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ordersPage::after {
+  content: '';
+  position: absolute;
+  bottom: 5%;
+  right: -5%;
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+  filter: blur(100px);
+  border-radius: 50%;
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ordersPage h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2.5rem;
+  color: #1f2937;
+  font-weight: 800;
+  position: relative;
+  z-index: 1;
+  letter-spacing: -1px;
+}
+
+.loadingContainer, .emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.emptyState {
+  text-align: center;
+}
+
+.emptyState h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #374151;
+  font-size: 1.5rem;
+}
+
+.emptyState p {
+  color: #6b7280;
+}
+
+.ordersList {
+  display: grid;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* The Glass Card Style */
+.orderCard {
+  /* Glassmorphism base */
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 2rem;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.orderCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.orderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+.orderId {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #1f2937;
+}
+
+.orderDate {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.orderStatusBadge {
+  /* Custom addition to match style */
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 114, 255, 0.3);
+}
+
+.orderItems {
+  margin-bottom: 1.5rem;
+}
+
+.orderItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.orderItem:last-child {
+  border-bottom: none;
+}
+
+.orderItem span:first-child {
+  color: #4b5563;
+}
+
+.orderItem span:last-child {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.orderFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.orderTotal {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.orderTotal span:last-child {
+  font-size: 1.75rem;
+  font-weight: 800;
+  /* Gradient Text for price */
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.qrCodeContainer {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.qrCodeContainer img {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Payment Section */
+.paymentContainer {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.paymentCard {
+  /* Glass card styling */
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 2.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.paymentCard h2 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: #1f2937;
+  font-size: 1.75rem;
+}
+
+.orderSummary {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.orderSummary h3 {
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+}
+
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.summaryTotal {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 2px dashed rgba(0, 0, 0, 0.1);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.summaryTotal span:last-child {
+  font-size: 1.5rem;
+  color: #0072ff;
+}
+
+.paymentMethods h3 {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #4b5563;
+  text-align: center;
+}
+
+.paymentButtons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.upiButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.upiButton:hover:not(:disabled) {
+  background: white;
+  border-color: #0072ff;
+  color: #0072ff;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 114, 255, 0.15);
+}
+
+.upiButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(100%);
+}
+
+/* Icons inside buttons */
+.upiButton svg, .upiButton i {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .ordersPage {
+    padding: 1rem;
+  }
+
+  .orderCard {
+    padding: 1.5rem;
+  }
+
+  .orderHeader {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .orderStatusBadge {
+    align-self: flex-start;
+  }
+  
+  .paymentCard {
+    padding: 1.5rem;
+  }
+
+  .paymentButtons {
+    grid-template-columns: 1fr;
+  }
+  
+  .orderTotal {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+  }
+}

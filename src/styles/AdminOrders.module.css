@@ -1,0 +1,281 @@
+/* IMPORT FONT - Resembles the clean sans-serif in the image */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* PALETTE FROM IMAGE */
+  --primary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --accent-color: #3b82f6;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  
+  /* GLASSMORPHISM VARIABLES */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  --blur-amount: 20px;
+  
+  /* SHAPES */
+  --radius-lg: 30px;
+  --radius-md: 20px;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  /* Abstract colorful background mesh */
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(79, 172, 254, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8) 0%, #f3f4f6 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+}
+
+.ordersPage {
+  padding: 3rem 2rem;
+  min-height: calc(100vh - 80px);
+}
+
+.ordersPage h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  color: #000000;
+  letter-spacing: -0.5px;
+}
+
+/* SHARED GLASS STYLE */
+.filtersCard, .orderCard {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-amount));
+  -webkit-backdrop-filter: blur(var(--blur-amount));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--radius-lg);
+}
+
+/* FILTERS SECTION */
+.filtersCard {
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Use standard inputs but style them to match */
+.filterGroup input, 
+.filterGroup select {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255,255,255, 0.9);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  color: var(--text-primary);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.filterGroup input:focus, 
+.filterGroup select:focus {
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.3);
+}
+
+/* LOADING & EMPTY STATES */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  gap: 1rem;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.emptyState h3 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.emptyState p {
+  color: var(--text-secondary);
+}
+
+/* ORDERS GRID */
+.ordersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 2rem;
+}
+
+.orderCard {
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.orderCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px 0 rgba(31, 38, 135, 0.15);
+}
+
+.orderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05); /* Very subtle divider */
+  margin-bottom: 1.25rem;
+}
+
+.orderId {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.orderDate {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: rgba(255,255,255,0.6);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+.orderInfo {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  font-size: 0.95rem;
+}
+
+.infoLabel {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.infoValue {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.orderItems {
+  margin-bottom: 1.5rem;
+}
+
+.orderItems strong {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.orderItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.orderItem span:first-child {
+  color: var(--text-secondary);
+}
+
+.orderItem span:last-child {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.orderTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 0;
+  border-top: 1px dashed rgba(0,0,0,0.1); /* Stylistic change */
+  margin-bottom: 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.orderTotal span:last-child {
+  color: #fff;
+  background: var(--primary-gradient);
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+}
+
+.orderActions {
+  margin-top: 1.5rem;
+}
+
+.orderActions button {
+  /* Assuming there are buttons here */
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  background: white;
+  color: var(--accent-color);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.orderActions button:hover {
+  background: #f8fafc;
+  transform: scale(1.02);
+}
+
+.qrCodeContainer {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.qrCodeContainer img {
+  width: 140px;
+  height: 140px;
+  border: 4px solid white; /* Photo frame effect */
+  border-radius: var(--radius-md);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 768px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .ordersGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ordersPage {
+    padding: 1.5rem 1rem;
+  }
+}

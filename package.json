@@ -1,0 +1,31 @@
+{
+  "name": "ncas-smartdinef",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seninnizar2322k3593-prog/NCAS-SMARTDINEf.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seninnizar2322k3593-prog/NCAS-SMARTDINEf/issues"
+  },
+  "homepage": "https://github.com/seninnizar2322k3593-prog/NCAS-SMARTDINEf#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.95.3",
+    "html5-qrcode": "^2.3.8",
+    "next": "^16.1.6",
+    "qrcode": "^1.5.4",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  }
+}

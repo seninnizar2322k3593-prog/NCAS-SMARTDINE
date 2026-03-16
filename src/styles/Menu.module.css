@@ -1,0 +1,435 @@
+/* Main Page Container */
+.menuPage {
+  padding: 2rem 0;
+  min-height: calc(100vh - 80px);
+  background: radial-gradient(circle at top center, #f8fafc 0%, #e2e8f0 100%);
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Background Effects */
+.menuPage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 600px;
+  height: 600px;
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  filter: blur(100px);
+  border-radius: 50%;
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.menuPage::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+  filter: blur(90px);
+  border-radius: 50%;
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.menuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.menuHeader h1 {
+  font-size: 2rem;
+  color: #1f2937;
+  font-weight: 800;
+}
+
+/* Date Selector */
+.dateSelector {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 0.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.dateBtn {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.dateBtn:hover {
+  background: rgba(255, 255, 255, 0.8);
+  color: #0072ff;
+}
+
+.dateBtnActive {
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  color: white !important;
+  box-shadow: 0 4px 10px rgba(0, 114, 255, 0.3);
+}
+
+/* Layout Grid */
+.menuContent {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* 
+   FIXED GRID LAYOUT:
+   1. Use auto-fit to better handle available space.
+   2. Explicitly set gap to 2rem (32px).
+   3. Added padding to container to prevent edge touching.
+   4. Use minmax(300px, 1fr) to ensure cards are wide enough for quantity controls.
+*/
+.menuItems {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem; /* Enforce spacing between cards */
+  width: 100%;
+  padding: 0.5rem; /* Breathing room inside the grid container */
+  align-items: stretch;
+}
+
+/* Menu Card */
+.menuCard {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  height: 100%; /* Match height of other cards in row */
+  margin: 0; /* Reset any margins */
+  box-sizing: border-box; /* Ensure padding doesn't increase width */
+}
+
+.menuCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 2; /* Bring forward on hover */
+}
+
+.menuCardImage {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: #f1f5f9;
+  flex-shrink: 0;
+}
+
+.menuCardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.menuCard:hover .menuCardImage img {
+  transform: scale(1.05);
+}
+
+.menuCardImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e2e8f0 0%, #f1f5f9 100%);
+  color: #94a3b8;
+}
+
+.soldOutBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(239, 68, 68, 0.9);
+  backdrop-filter: blur(4px);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.menuCardContent {
+  padding: 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.menuCardTitle {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1.3;
+}
+
+.menuCardDescription {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-bottom: 1.5rem;
+  flex: 1;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.menuCardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+}
+
+.menuCardPrice {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+}
+
+.menuCardQuantity {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.menuCardActions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.menuCardActions > button {
+  width: 100%;
+  padding: 0.875rem;
+  border-radius: 1rem;
+  font-weight: 600;
+}
+
+/* Quantity Control */
+.quantityControl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.5rem 0.75rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 114, 255, 0.15);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.quantityBtn {
+  min-width: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: none;
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  color: white;
+  border-radius: 0.65rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 114, 255, 0.25);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.quantityBtn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0072ff 0%, #0056cc 100%);
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(0, 114, 255, 0.35);
+}
+
+.quantityBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: #cbd5e1;
+}
+
+.quantityValue {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: #1f2937;
+  min-width: 2rem;
+  text-align: center;
+  flex: 1;
+}
+
+/* Cart Sidebar */
+.cartSidebar {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+  min-width: 300px;
+}
+
+.cartCard {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-radius: 2rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.cartTitle {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-weight: 700;
+}
+
+.cartItems {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.cartItemName {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.cartItemPrice {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.cartRemoveBtn {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: none;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-top: 2px dashed rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.cartTotalAmount {
+  color: #0072ff;
+  font-size: 1.5rem;
+}
+
+.loadingContainer, .emptyState {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .menuContent {
+    grid-template-columns: 1fr;
+  }
+
+  .cartSidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    z-index: 1000;
+    padding: 0 1rem 1rem;
+    pointer-events: none;
+  }
+
+  .cartCard {
+    pointer-events: auto;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+    max-height: 60vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cartItems {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .menuHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .menuItems {
+    grid-template-columns: 1fr;
+  }
+}

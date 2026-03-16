@@ -1,0 +1,397 @@
+/* Main Page Container with Atmospheric Background */
+.reportsPage {
+  padding: 2rem 0;
+  min-height: calc(100vh - 80px);
+  /* Soft gradient base */
+  background: radial-gradient(circle at 10% 20%, #eff6ff 0%, #fdf2f8 100%);
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Background Atmospheric Blobs */
+.reportsPage::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  filter: blur(80px);
+  border-radius: 50%;
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.reportsPage::after {
+  content: '';
+  position: absolute;
+  bottom: 100px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+  filter: blur(100px);
+  border-radius: 50%;
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.header h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #1f2937;
+  letter-spacing: -0.5px;
+}
+
+/* Styled Select Dropdown */
+.header select {
+  max-width: 200px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  color: #4b5563;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.header select:hover,
+.header select:focus {
+  background: white;
+  box-shadow: 0 8px 20px rgba(0, 114, 255, 0.15);
+  border-color: #0072ff;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Glass Stat Card */
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 2rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.statIcon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: 0 8px 16px rgba(142, 197, 252, 0.3);
+}
+
+.statContent {
+  flex: 1;
+}
+
+.statValue {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1f2937;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.statLabel {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Revenue Section */
+.revenueCard {
+  margin-top: 3rem;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  border-radius: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1;
+}
+
+.revenueCard h2 {
+  margin-bottom: 2rem;
+  color: #374151;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.revenueGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.revenueItem {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.revenueItem:hover {
+  background: white;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* Last 7 Days - Blue gradient */
+.revenueItem:nth-child(1) {
+  background: linear-gradient(135deg, #e0f2fe 0%, #bfdbfe 100%);
+  border: 1px solid rgba(147, 197, 253, 0.4);
+}
+
+.revenueItem:nth-child(1):hover {
+  background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%);
+}
+
+/* Last 30 Days - Purple gradient */
+.revenueItem:nth-child(2) {
+  background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+  border: 1px solid rgba(216, 180, 254, 0.4);
+}
+
+.revenueItem:nth-child(2):hover {
+  background: linear-gradient(135deg, #ede9fe 0%, #d8b4fe 100%);
+}
+
+.revenueLabel {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.revenueValue {
+  font-size: 2.5rem;
+  font-weight: 800;
+  /* Vivid gradient text */
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Top Items & Recent Orders Cards */
+.topItemsCard,
+.recentOrdersCard {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.topItemsCard h2,
+.recentOrdersCard h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  color: #374151;
+  font-weight: 700;
+}
+
+.topItemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.topItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.topItem:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.02);
+}
+
+.topItemRank {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+  color: white;
+  border-radius: 1rem; /* Squircle shape */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(166, 193, 238, 0.4);
+}
+
+/* Special styling for top 3 ranks */
+.topItem:nth-child(1) .topItemRank {
+  background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
+  box-shadow: 0 4px 10px rgba(255, 165, 0, 0.4);
+}
+
+.topItemName {
+  flex: 1;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.topItemCount {
+  color: #0072ff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: rgba(0, 114, 255, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+}
+
+.ordersList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.orderItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.orderItem:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.orderItemInfo {
+  flex: 1;
+}
+
+.orderItemId {
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.orderItemStudent {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.orderItemRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.orderItemAmount {
+  font-weight: 700;
+  color: #0072ff;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .reportsPage {
+    padding: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .header select {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .statCard {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .revenueGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .revenueValue {
+    font-size: 2rem;
+  }
+
+  .orderItemRight {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+  }
+}

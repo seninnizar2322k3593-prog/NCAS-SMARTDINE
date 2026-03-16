@@ -1,0 +1,258 @@
+/* IMPORT FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* NCAS SMART DINE BRAND PALETTE */
+  --ncas-blue: #0056A0;
+  --ncas-cyan: #0099CC;
+  --ncas-green: #00A651;
+  --ncas-yellow: #FFD700;
+  --ncas-orange: #FF8C00;
+  --ncas-navy: #003366;
+  
+  /* PRIMARY GRADIENTS */
+  --primary-gradient: linear-gradient(135deg, #0099CC 0%, #00A651 100%);
+  --accent-gradient: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
+  --brand-gradient: linear-gradient(90deg, #0056A0 0%, #0099CC 40%, #00A651 100%);
+  
+  --text-primary: #003366;
+  --text-secondary: #4a5568;
+  
+  /* GLASS VARS */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 102, 204, 0.12);
+  --blur-amount: 20px;
+  
+  /* SHAPES */
+  --radius-xl: 40px;
+  --radius-lg: 30px;
+  --radius-md: 20px;
+}
+
+/* Main container with Mesh Gradient background */
+.authContainer {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  
+  /* NCAS Brand Mesh Gradient Background */
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(0, 153, 204, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(0, 166, 81, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.9) 0%, #f0f4f8 100%);
+  background-attachment: fixed;
+  
+  padding: 2rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Floating "3D" Shapes with NCAS brand colors */
+.authContainer::before {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #0099CC 0%, #00A651 100%);
+  border-radius: 50%; /* Sphere */
+  top: -100px;
+  right: -50px;
+  opacity: 0.4;
+  filter: blur(40px);
+  animation: float 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+.authContainer::after {
+  content: '';
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; /* Organic blob shape */
+  bottom: -100px;
+  left: -100px;
+  opacity: 0.3;
+  filter: blur(50px);
+  animation: float 10s ease-in-out infinite reverse;
+  z-index: 0;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(5deg); }
+}
+
+/* Glass Card */
+.authCard {
+  /* Glass Effect */
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-amount));
+  -webkit-backdrop-filter: blur(var(--blur-amount));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--radius-xl);
+  
+  width: 100%;
+  max-width: 480px;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header - Removed solid block, made it clean & integrated */
+.authHeader {
+  background: transparent; /* No solid background */
+  padding: 3rem 2.5rem 1rem;
+  text-align: center;
+}
+
+.authHeader h1 {
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  
+  /* Gradient Text */
+  background: var(--primary-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  text-shadow: none;
+}
+
+.authHeader p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.authForm {
+  padding: 1rem 2.5rem 3rem;
+}
+
+.authForm h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* Input Fields - Glassy look */
+.authForm input {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  padding: 0.9rem 1.25rem;
+  border-radius: var(--radius-md);
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.authForm input:focus {
+  background: #ffffff;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 153, 204, 0.2);
+  border-color: #0099CC;
+  transform: translateY(-2px);
+}
+
+.authForm label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  margin-left: 0.25rem;
+}
+
+/* Submit Button - NCAS Brand Gradient & Shadow */
+.authForm button[type="submit"] {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: none;
+  border-radius: var(--radius-md);
+  
+  background: var(--primary-gradient);
+  color: white;
+  
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 153, 204, 0.35);
+}
+
+.authForm button[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0, 166, 81, 0.4);
+  background: linear-gradient(135deg, #0056A0 0%, #0099CC 100%);
+}
+
+.authForm button[type="submit"]:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+/* Footer styling */
+.authFooter {
+  margin-top: 2rem;
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.authFooter p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.authLink {
+  color: #0099CC;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.authLink:hover {
+  text-decoration: none;
+  color: #00A651;
+}
+
+@media (max-width: 640px) {
+  .authContainer {
+    padding: 1rem;
+  }
+  
+  .authCard {
+    border-radius: 20px;
+  }
+
+  .authHeader {
+    padding: 2rem 1.5rem 0.5rem;
+  }
+
+  .authHeader h1 {
+    font-size: 1.75rem;
+  }
+
+  .authForm {
+    padding: 1rem 1.5rem 2rem;
+  }
+}
